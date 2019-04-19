@@ -58,14 +58,17 @@ def function(temp):
         temp['neutral'].loc[i[0]]=analysis['neu']
         temp['compound'].loc[i[0]]=analysis['compound']
         temp['label'].loc[i[0]]=filter_data_label(analysis['compound'])
-        print(i[0])
+        print(i[0]/temp.shape[0]*100)
 
     return(temp)
 
 #%%
 
-train_dataset_10000=function(train_dataset[:10001])
-train_dataset_10000.to_csv('train_dataset_10000.csv',index=False)
+train_dataset_all=function(train_dataset)
+train_dataset_all.to_csv('train_dataset_all.csv',index=False)
+#%%
+test_dataset_all=function(test_dataset)
+test_dataset_all.to_csv('test_dataset_all.csv',index=False)
 
 #%%
 from dask.distributed import Client
