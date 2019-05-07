@@ -11,7 +11,6 @@ import os
 import copy as cp
 import vaderSentiment.vaderSentiment as vd
 import warnings
-import dask.dataframe as dd
 #%%
 warnings.filterwarnings('ignore')
 os.chdir('/home/rishav/Test/drugsCom/Vader-Sentiment-Analysis')
@@ -70,19 +69,4 @@ train_dataset_all.to_csv('train_dataset_all.csv',index=False)
 test_dataset_all=function(test_dataset)
 test_dataset_all.to_csv('test_dataset_all.csv',index=False)
 
-#%%
-from dask.distributed import Client
-client = Client(processes=4)
-client
-temp_train=dd.read_csv('drugsComTrain_raw.tsv',blocksize=10000,sep='\t')
-temp_train=temp_train.loc[:,['condition', 'review', 'rating', 'usefulCount']]
-temp_train['negative']=np.nan
-temp_train['positive']=np.nan
-temp_train['neutral']=np.nan
-temp_train['compound']=np.nan
-temp_train['label']=np.nan
-temp=temp_train.map_partitions(lambda df:function(df))
-temp = client.persist(temp)
-type(temp)
-temp.head()
 
