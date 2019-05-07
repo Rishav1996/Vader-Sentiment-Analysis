@@ -1,1 +1,9 @@
-# Vader-Sentiment-Analysis
+# Vader Sentiment Analysis
+### Python Packages Required
+- pip install scikit-learn
+- pip install matplotlib
+- pip install scipy
+- pip install pandas
+- pip install numpy
+- pip install yellowbrick
+- pip install vadersentiment

@@ -62,7 +62,6 @@ def function(temp):
     return(temp)
 
 #%%
-
 train_dataset_all=function(train_dataset)
 train_dataset_all.to_csv('train_dataset_all.csv',index=False)
 #%%
